@@ -26,7 +26,7 @@
         <version>5</version>
     </parent>
 
-    <groupId>org.wso2.extension.siddhi.io.tcp</groupId>
+    <groupId>org.wso2.extension.siddhi.map.binary</groupId>
     <artifactId>siddhi-map-binary-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
