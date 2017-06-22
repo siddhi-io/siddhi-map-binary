@@ -20,6 +20,7 @@ package org.wso2.extension.siddhi.map.binary.sinkmapper;
 
 import org.wso2.extension.siddhi.map.binary.utils.BinaryMessageConverterUtil;
 import org.wso2.siddhi.core.event.Event;
+import org.wso2.siddhi.query.api.definition.Attribute;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -30,13 +31,13 @@ import java.nio.ByteBuffer;
  */
 public class BinaryEventConverter {
 
-    public static ByteBuffer convertToBinaryMessage(Event[] events) throws IOException {
+    public static ByteBuffer convertToBinaryMessage(Event[] events, Attribute.Type[] types) throws IOException {
 
         int eventCount = events.length;
 
         int messageSize = 4;
         for (Event event : events) {
-            messageSize += getEventSize(event);
+            messageSize += getEventSize(event, types);
         }
 
         ByteBuffer messageBuffer = ByteBuffer.wrap(new byte[messageSize]);
@@ -45,8 +46,10 @@ public class BinaryEventConverter {
         for (Event event : events) {
             messageBuffer.putLong(event.getTimestamp());
             if (event.getData() != null && event.getData().length != 0) {
-                for (Object aData : event.getData()) {
-                    BinaryMessageConverterUtil.assignData(aData, messageBuffer);
+                Object[] data = event.getData();
+                for (int i = 0; i < data.length; i++) {
+                    Object aData = data[i];
+                    BinaryMessageConverterUtil.assignData(aData, messageBuffer, types[i]);
                 }
             }
         }
@@ -55,12 +58,13 @@ public class BinaryEventConverter {
 
     }
 
-    private static int getEventSize(Event event) {
+    private static int getEventSize(Event event, Attribute.Type[] types) {
         int eventSize = 8;
         Object[] data = event.getData();
         if (data != null) {
-            for (Object aData : data) {
-                eventSize += BinaryMessageConverterUtil.getSize(aData);
+            for (int i = 0; i < data.length; i++) {
+                Object aData = data[i];
+                eventSize += BinaryMessageConverterUtil.getSize(aData, types[i]);
             }
         }
         return eventSize;

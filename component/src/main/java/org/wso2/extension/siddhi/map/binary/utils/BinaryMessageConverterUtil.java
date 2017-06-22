@@ -17,6 +17,8 @@
  */
 package org.wso2.extension.siddhi.map.binary.utils;
 
+import org.wso2.siddhi.query.api.definition.Attribute;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,40 +58,51 @@ public final class BinaryMessageConverterUtil {
         return new String(bytes, Charset.defaultCharset());
     }
 
-    public static int getSize(Object data) {
-        if (data instanceof String) {
-            return 4 + ((String) data).length();
-        } else if (data instanceof Integer) {
-            return 4;
-        } else if (data instanceof Long) {
-            return 8;
-        } else if (data instanceof Float) {
-            return 4;
-        } else if (data instanceof Double) {
-            return 8;
-        } else if (data instanceof Boolean) {
-            return 1;
-        } else {
-            return 4;
+    public static int getSize(Object data, Attribute.Type type) {
+        switch (type) {
+
+            case STRING:
+                return 4 + ((String) data).length();
+            case INT:
+                return 4;
+            case LONG:
+                return 8;
+            case FLOAT:
+                return 4;
+            case DOUBLE:
+                return 8;
+            case BOOL:
+                return 1;
+            default:
+                return 4;
         }
     }
 
-    public static void assignData(Object data, ByteBuffer eventDataBuffer) throws IOException {
-        if (data instanceof String) {
-            eventDataBuffer.putInt(((String) data).length());
-            eventDataBuffer.put((((String) data).getBytes(Charset.defaultCharset())));
-        } else if (data instanceof Integer) {
-            eventDataBuffer.putInt((Integer) data);
-        } else if (data instanceof Long) {
-            eventDataBuffer.putLong((Long) data);
-        } else if (data instanceof Float) {
-            eventDataBuffer.putFloat((Float) data);
-        } else if (data instanceof Double) {
-            eventDataBuffer.putDouble((Double) data);
-        } else if (data instanceof Boolean) {
-            eventDataBuffer.put((byte) (((Boolean) data) ? 1 : 0));
-        } else {
-            eventDataBuffer.putInt(0);
+    public static void assignData(Object data, ByteBuffer eventDataBuffer, Attribute.Type type) throws IOException {
+        switch (type) {
+
+            case STRING:
+                eventDataBuffer.putInt(((String) data).length());
+                eventDataBuffer.put((((String) data).getBytes(Charset.defaultCharset())));
+                break;
+            case INT:
+                eventDataBuffer.putInt((Integer) data);
+                break;
+            case LONG:
+                eventDataBuffer.putLong((Long) data);
+                break;
+            case FLOAT:
+                eventDataBuffer.putFloat((Float) data);
+                break;
+            case DOUBLE:
+                eventDataBuffer.putDouble((Double) data);
+                break;
+            case BOOL:
+                eventDataBuffer.put((byte) (((Boolean) data) ? 1 : 0));
+                break;
+            case OBJECT:
+                eventDataBuffer.putInt(0);
+                break;
         }
 
     }
