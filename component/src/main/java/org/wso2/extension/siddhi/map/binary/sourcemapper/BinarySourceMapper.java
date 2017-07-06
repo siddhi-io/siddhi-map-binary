@@ -21,9 +21,11 @@ package org.wso2.extension.siddhi.map.binary.sourcemapper;
 import org.wso2.extension.siddhi.map.binary.utils.EventDefinitionConverterUtil;
 import org.wso2.siddhi.annotation.Example;
 import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
 import org.wso2.siddhi.core.event.Event;
-import org.wso2.siddhi.core.stream.AttributeMapping;
-import org.wso2.siddhi.core.stream.input.InputEventHandler;
+import org.wso2.siddhi.core.exception.SiddhiAppCreationException;
+import org.wso2.siddhi.core.stream.input.source.AttributeMapping;
+import org.wso2.siddhi.core.stream.input.source.InputEventHandler;
 import org.wso2.siddhi.core.stream.input.source.SourceMapper;
 import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.core.util.transport.OptionHolder;
@@ -51,10 +53,17 @@ public class BinarySourceMapper extends SourceMapper {
     private StreamDefinition streamDefinition;
 
     @Override
-    public void init(StreamDefinition streamDefinition, OptionHolder optionHolder, List<AttributeMapping> list,
-                     ConfigReader configReader) {
+    public void init(StreamDefinition streamDefinition,
+                     OptionHolder optionHolder,
+                     List<AttributeMapping> attributeMappings,
+                     ConfigReader configReader,
+                     SiddhiAppContext siddhiAppContext) {
         types = EventDefinitionConverterUtil.generateAttributeTypeArray(streamDefinition
                 .getAttributeList());
+        if (attributeMappings != null && attributeMappings.size() > 0) {
+            throw new SiddhiAppCreationException("'binary' source-mapper does not support custom mapping, " +
+                    "but found at stream '" + streamDefinition.getId() + "'");
+        }
         this.streamDefinition = streamDefinition;
     }
 
@@ -76,4 +85,10 @@ public class BinarySourceMapper extends SourceMapper {
             LOG.error("Error at binary source mapper of '" + streamDefinition.getId() + "' " + t.getMessage(), t);
         }
     }
+
+    @Override
+    public Class[] getSupportedInputEventClasses() {
+        return new Class[]{ByteBuffer.class, byte[].class};
+    }
+
 }
