@@ -29,27 +29,29 @@ import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.stream.output.StreamCallback;
 import org.wso2.siddhi.core.util.EventPrinter;
+import org.wso2.siddhi.core.util.SiddhiTestHelper;
 import org.wso2.siddhi.core.util.transport.InMemoryBroker;
 import org.wso2.siddhi.query.api.definition.Attribute;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
  * TCP sinkmapper test case.
  */
 public class BinarySourceMapperTestCase {
-    static final Logger LOG = Logger.getLogger(BinarySourceMapperTestCase.class);
-    private volatile int count;
-    private volatile int count1;
+    private static final Logger LOG = Logger.getLogger(BinarySourceMapperTestCase.class);
+    private volatile AtomicInteger count = new AtomicInteger(0);
     private volatile boolean eventArrived;
+    private long waitTime = 300;
+    private long timeout = 2000;
 
     @BeforeMethod
     public void init() {
-        count = 0;
-        count1 = 0;
+        count.set(0);
         eventArrived = false;
     }
 
@@ -80,8 +82,8 @@ public class BinarySourceMapperTestCase {
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
-                    count++;
-                    switch (count) {
+                    count.getAndIncrement();
+                    switch (count.get()) {
                         case 1:
                             AssertJUnit.assertEquals("test", event.getData(0));
                             break;
@@ -106,12 +108,9 @@ public class BinarySourceMapperTestCase {
         arrayList.add(new Event(System.currentTimeMillis(), new Object[]{"test2", 362, 32.0f, 3802L, 232.0, true}));
         InMemoryBroker.publish("WSO2", ByteBuffer.wrap(BinaryEventConverter.convertToBinaryMessage(
                 arrayList.toArray(new Event[3]), types).array()));
-
-        Thread.sleep(300);
-
+        SiddhiTestHelper.waitForEvents(waitTime, 3, count, timeout);
         siddhiAppRuntime.shutdown();
 
-        AssertJUnit.assertEquals(3, count);
         AssertJUnit.assertTrue(eventArrived);
     }
 
@@ -143,8 +142,8 @@ public class BinarySourceMapperTestCase {
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
-                    count++;
-                    switch (count) {
+                    count.getAndIncrement();
+                    switch (count.get()) {
                         case 1:
                             AssertJUnit.assertEquals("test", event.getData(0));
                             AssertJUnit.assertTrue((Integer) event.getData(1) != 36f);
@@ -171,11 +170,10 @@ public class BinarySourceMapperTestCase {
         InMemoryBroker.publish("WSO2", ByteBuffer.wrap(BinaryEventConverter.convertToBinaryMessage(
                 arrayList.toArray(new Event[3]), types).array()));
 
-        Thread.sleep(300);
+        SiddhiTestHelper.waitForEvents(waitTime, 3, count, timeout);
 
         siddhiAppRuntime.shutdown();
 
-        AssertJUnit.assertEquals(3, count);
         AssertJUnit.assertTrue(eventArrived);
     }
 
@@ -207,8 +205,8 @@ public class BinarySourceMapperTestCase {
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
-                    count++;
-                    switch (count) {
+                    count.getAndIncrement();
+                    switch (count.get()) {
                         case 1:
                             AssertJUnit.assertEquals("test", event.getData(0));
                             AssertJUnit.assertTrue((Integer) event.getData(1) != 36f);
@@ -235,11 +233,10 @@ public class BinarySourceMapperTestCase {
         InMemoryBroker.publish("WSO2", ByteBuffer.wrap(BinaryEventConverter.convertToBinaryMessage(
                 arrayList.toArray(new Event[3]), types).array()));
 
-        Thread.sleep(300);
+        SiddhiTestHelper.waitForEvents(waitTime, 3, count, timeout);
 
         siddhiAppRuntime.shutdown();
 
-        AssertJUnit.assertEquals(0, count);
         AssertJUnit.assertFalse(eventArrived);
     }
 }
