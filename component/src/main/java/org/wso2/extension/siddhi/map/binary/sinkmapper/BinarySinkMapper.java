@@ -42,8 +42,11 @@ import java.util.Arrays;
 @Extension(
         name = "binary",
         namespace = "sinkMapper",
-        description = "TBD",
-        examples = @Example(description = "TBD", syntax = "TBD")
+        description = "This section explains how to map events processed via Siddhi in order to publish them in " +
+                "the `binary` format.",
+        examples = @Example(syntax = "@sink(type='inMemory', topic='WSO2', @map(type='binary')) " +
+                "define stream FooStream (symbol string, price float, volume long); ",
+                description = "This will publish Siddhi event in binary format.")
 )
 public class BinarySinkMapper extends SinkMapper {
 

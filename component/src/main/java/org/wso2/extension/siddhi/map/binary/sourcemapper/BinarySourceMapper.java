@@ -44,8 +44,12 @@ import static org.wso2.extension.siddhi.map.binary.sourcemapper.SiddhiEventConve
 @Extension(
         name = "binary",
         namespace = "sourceMapper",
-        description = "TBD",
-        examples = @Example(description = "TBD", syntax = "TBD")
+        description = "This extension is a binary input mapper that converts events received in `binary`" +
+                " format to Siddhi events before they are processed.",
+        examples = @Example(syntax = "@source(type='inMemory', topic='WSO2', @map(type='binary'))" +
+                "define stream FooStream (symbol string, price float, volume long); ",
+                description = "This query performs a mapping to convert an event of the `binary` " +
+                        "format to a Siddhi event. ")
 )
 public class BinarySourceMapper extends SourceMapper {
 
