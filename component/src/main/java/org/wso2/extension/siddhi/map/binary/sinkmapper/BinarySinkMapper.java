@@ -35,6 +35,7 @@ import org.wso2.siddhi.query.api.definition.StreamDefinition;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Map;
 
 /**
  * Binary sink mapper extension.
@@ -55,11 +56,12 @@ public class BinarySinkMapper extends SinkMapper {
     private Attribute.Type[] types;
 
     @Override
-    public void init(StreamDefinition streamDefinition, OptionHolder optionHolder, TemplateBuilder templateBuilder,
-                     ConfigReader configReader, SiddhiAppContext siddhiAppContext) {
+    public void init(StreamDefinition streamDefinition, OptionHolder optionHolder,
+            Map<String, TemplateBuilder> payloadTemplateBuilderMap, ConfigReader configReader,
+            SiddhiAppContext siddhiAppContext) {
         this.streamDefinition = streamDefinition;
         this.types = EventDefinitionConverterUtil.generateAttributeTypeArray(streamDefinition.getAttributeList());
-        if (templateBuilder != null) {
+        if (payloadTemplateBuilderMap != null) {
             throw new SiddhiAppCreationException("Binary sink-mapper does not support @payload mapping, " +
                     "error at the mapper of '" + streamDefinition.getId() + "'");
         }
@@ -76,8 +78,8 @@ public class BinarySinkMapper extends SinkMapper {
     }
 
     @Override
-    public void mapAndSend(Event[] events, OptionHolder optionHolder, TemplateBuilder templateBuilder,
-                           SinkListener sinkListener) {
+    public void mapAndSend(Event[] events, OptionHolder optionHolder,
+            Map<String, TemplateBuilder> payloadTemplateBuilderMap, SinkListener sinkListener) {
         try {
             sinkListener.publish(BinaryEventConverter.convertToBinaryMessage(events, types));
         } catch (Throwable e) {
@@ -87,10 +89,9 @@ public class BinarySinkMapper extends SinkMapper {
     }
 
     @Override
-    public void mapAndSend(Event event, OptionHolder optionHolder, TemplateBuilder templateBuilder,
-                           SinkListener sinkListener) {
-        mapAndSend(new Event[]{event}, optionHolder, templateBuilder, sinkListener);
+    public void mapAndSend(Event event, OptionHolder optionHolder,
+            Map<String, TemplateBuilder> payloadTemplateBuilderMap, SinkListener sinkListener) {
+        mapAndSend(new Event[]{event}, optionHolder, payloadTemplateBuilderMap, sinkListener);
     }
-
 
 }
