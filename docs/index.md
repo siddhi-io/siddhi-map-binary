@@ -46,8 +46,8 @@ Latest API Docs is <a target="_blank" href="https://wso2-extensions.github.io/si
 
 ## Features
 
-* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-binary/api/1.0.1-SNAPSHOT/#binary-source-mapper">binary</a> *(<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#source-mappers">Source Mapper</a>)*<br><div style="padding-left: 1em;"><p>This extension is a binary input mapper that converts events received in <code>binary</code> format to Siddhi events before they are processed.</p></div>
 * <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-binary/api/1.0.1-SNAPSHOT/#binary-sink-mapper">binary</a> *(<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#sink-mappers">Sink Mapper</a>)*<br><div style="padding-left: 1em;"><p>This section explains how to map events processed via Siddhi in order to publish them in the <code>binary</code> format.</p></div>
+* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-binary/api/1.0.1-SNAPSHOT/#binary-source-mapper">binary</a> *(<a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#source-mappers">Source Mapper</a>)*<br><div style="padding-left: 1em;"><p>This extension is a binary input mapper that converts events received in <code>binary</code> format to Siddhi events before they are processed.</p></div>
 
 ## How to Contribute
  
