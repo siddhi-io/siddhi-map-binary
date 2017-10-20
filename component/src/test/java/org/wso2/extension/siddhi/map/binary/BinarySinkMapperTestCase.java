@@ -30,25 +30,28 @@ import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.exception.SiddhiAppCreationException;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
+import org.wso2.siddhi.core.util.SiddhiTestHelper;
 import org.wso2.siddhi.core.util.transport.InMemoryBroker;
 import org.wso2.siddhi.query.api.definition.Attribute;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * TCP sinkmapper test case.
  */
 public class BinarySinkMapperTestCase {
     static final Logger LOG = Logger.getLogger(BinarySinkMapperTestCase.class);
-    private volatile int count;
+    private volatile AtomicInteger count = new AtomicInteger(0);
     private volatile int count1;
     private volatile boolean eventArrived;
+    private long waitTime = 300;
+    private long timeout = 2000;
 
     @BeforeMethod
     public void init() {
-        count = 0;
+        count.set(0);
         count1 = 0;
         eventArrived = false;
     }
@@ -82,19 +85,19 @@ public class BinarySinkMapperTestCase {
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
-                    count++;
-                    switch (count) {
-                        case 1:
-                            AssertJUnit.assertEquals("test", event.getData(0));
-                            break;
-                        case 2:
-                            AssertJUnit.assertEquals("test1", event.getData(0));
-                            break;
-                        case 3:
-                            AssertJUnit.assertEquals("test2", event.getData(0));
-                            break;
-                        default:
-                            AssertJUnit.fail();
+                    count.getAndIncrement();
+                    switch (count.get()) {
+                    case 1:
+                        AssertJUnit.assertEquals("test", event.getData(0));
+                        break;
+                    case 2:
+                        AssertJUnit.assertEquals("test1", event.getData(0));
+                        break;
+                    case 3:
+                        AssertJUnit.assertEquals("test2", event.getData(0));
+                        break;
+                    default:
+                        AssertJUnit.fail();
                     }
                 }
             }
@@ -115,12 +118,12 @@ public class BinarySinkMapperTestCase {
         arrayList.add(new Event(System.currentTimeMillis(), new Object[]{"test2", 362, 32.0f, 3802L, 232.0, true}));
         inputHandler.send(arrayList.toArray(new Event[3]));
 
-        Thread.sleep(300);
+        SiddhiTestHelper.waitForEvents(waitTime, 3, count, timeout);
 
         siddhiAppRuntime.shutdown();
         InMemoryBroker.unsubscribe(subscriber);
 
-        AssertJUnit.assertEquals(3, count);
+        AssertJUnit.assertEquals(3, count.get());
         AssertJUnit.assertTrue(eventArrived);
     }
 
@@ -154,16 +157,16 @@ public class BinarySinkMapperTestCase {
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
-                    count++;
-                    switch (count) {
-                        case 1:
-                            AssertJUnit.assertEquals("test", event.getData(0));
-                            break;
-                        case 2:
-                            AssertJUnit.assertEquals("test2", event.getData(0));
-                            break;
-                        default:
-                            AssertJUnit.fail();
+                    count.getAndIncrement();
+                    switch (count.get()) {
+                    case 1:
+                        AssertJUnit.assertEquals("test", event.getData(0));
+                        break;
+                    case 2:
+                        AssertJUnit.assertEquals("test2", event.getData(0));
+                        break;
+                    default:
+                        AssertJUnit.fail();
                     }
                 }
             }
@@ -188,12 +191,13 @@ public class BinarySinkMapperTestCase {
         arrayList2.add(new Event(System.currentTimeMillis(), new Object[]{"test2", 362, 32.0f, 3802L, 232.0, true}));
         inputHandler.send(arrayList2.toArray(new Event[2]));
 
-        Thread.sleep(3000);
+        SiddhiTestHelper.waitForEvents(waitTime, 2, count, timeout);
+
 
         siddhiAppRuntime.shutdown();
         InMemoryBroker.unsubscribe(subscriber);
 
-        AssertJUnit.assertEquals(2, count);
+        AssertJUnit.assertEquals(2, count.get());
         AssertJUnit.assertTrue(eventArrived);
 
 
@@ -245,8 +249,8 @@ public class BinarySinkMapperTestCase {
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
-                    count++;
-                    switch (count) {
+                    count.getAndIncrement();
+                    switch (count.get()) {
                     case 1:
                         AssertJUnit.assertEquals("test", event.getData(0));
                         break;
@@ -275,12 +279,12 @@ public class BinarySinkMapperTestCase {
         inputHandler.send(new Object[]{"test1", 361, 31.0f, 3801L, 231.0, false});
         inputHandler.send(new Object[]{"test2", 362, 32.0f, 3802L, 232.0, true});
 
-        Thread.sleep(300);
+        SiddhiTestHelper.waitForEvents(waitTime, 3, count, timeout);
 
         siddhiAppRuntime.shutdown();
         InMemoryBroker.unsubscribe(subscriber);
 
-        AssertJUnit.assertEquals(3, count);
+        AssertJUnit.assertEquals(3, count.get());
         AssertJUnit.assertTrue(eventArrived);
     }
 }
