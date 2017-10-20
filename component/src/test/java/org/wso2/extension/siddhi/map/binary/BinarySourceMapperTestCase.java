@@ -27,6 +27,7 @@ import org.wso2.extension.siddhi.map.binary.utils.EventDefinitionConverterUtil;
 import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
+import org.wso2.siddhi.core.exception.SiddhiAppCreationException;
 import org.wso2.siddhi.core.stream.output.StreamCallback;
 import org.wso2.siddhi.core.util.EventPrinter;
 import org.wso2.siddhi.core.util.SiddhiTestHelper;
@@ -239,5 +240,81 @@ public class BinarySourceMapperTestCase {
 
         AssertJUnit.assertFalse(eventArrived);
     }
-}
 
+    @Test(expectedExceptions = SiddhiAppCreationException.class)
+    public void binarySourceMapperTest4() throws InterruptedException, IOException {
+        LOG.info("binary SourceMapper TestCase for custom mapping");
+        SiddhiManager siddhiManager = new SiddhiManager();
+
+        String inStreamDefinition = "" +
+                "@source(type='inMemory', topic='WSO2', @map(type='binary', @attributes(a = 'a',b = 'b',c = 'c',"
+                + "d = 'd',e = 'e',f = 'f')))\n" +
+                "define stream inputStream (a string, b int, c float, d long, e double, f bool); " +
+                "" +
+                "define stream outputStream (a string, b int, c float, d long, e double, f bool);";
+        String query = ("@info(name = 'query1') " +
+                "from inputStream " +
+                "select *  " +
+                "insert into outputStream;");
+        siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
+    }
+
+    @Test
+    public void binarySourceMapperTest5() throws InterruptedException, IOException {
+        LOG.info("binary SourceMapper TestCase for object type");
+        SiddhiManager siddhiManager = new SiddhiManager();
+
+        String inStreamDefinition = "" +
+                "@source(type='inMemory', topic='WSO2', @map(type='binary'))\n" +
+                "define stream inputStream (a string, b int, c float, d long, e double, f bool); " +
+                "" +
+                "define stream outputStream (a string, b int, c float, d long, e double, f bool);";
+        String query = ("@info(name = 'query1') " +
+                "from inputStream " +
+                "select *  " +
+                "insert into outputStream;");
+
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(
+                inStreamDefinition + query);
+
+        Attribute.Type[] types = EventDefinitionConverterUtil.generateAttributeTypeArray(siddhiAppRuntime
+                .getStreamDefinitionMap().get("inputStream").getAttributeList());
+
+        siddhiAppRuntime.addCallback("outputStream", new StreamCallback() {
+            @Override
+            public void receive(Event[] events) {
+                EventPrinter.print(events);
+                eventArrived = true;
+                for (Event event : events) {
+                    count.getAndIncrement();
+                    switch (count.get()) {
+                    case 1:
+                        AssertJUnit.assertEquals("test", event.getData(0));
+                        break;
+                    case 2:
+                        AssertJUnit.assertEquals("test1", event.getData(0));
+                        break;
+                    case 3:
+                        AssertJUnit.assertEquals("test2", event.getData(0));
+                        break;
+                    default:
+                        AssertJUnit.fail();
+                    }
+                }
+            }
+        });
+
+        siddhiAppRuntime.start();
+
+        ArrayList<Event> arrayList = new ArrayList<Event>();
+        arrayList.add(new Event(System.currentTimeMillis(), new Object[]{"test", 36, 3.0f, 380L, 23.0, true}));
+        arrayList.add(new Event(System.currentTimeMillis(), new Object[]{"test1", 361, 31.0f, 3801L, 231.0, false}));
+        arrayList.add(new Event(System.currentTimeMillis(), new Object[]{"test2", 362, 32.0f, 3802L, 232.0, true}));
+        InMemoryBroker.publish("WSO2", BinaryEventConverter.convertToBinaryMessage(
+                arrayList.toArray(new Event[3]), types).array());
+        SiddhiTestHelper.waitForEvents(waitTime, 3, count, timeout);
+        siddhiAppRuntime.shutdown();
+
+        AssertJUnit.assertTrue(eventArrived);
+    }
+}
