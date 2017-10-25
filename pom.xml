@@ -27,7 +27,7 @@
 
     <groupId>org.wso2.extension.siddhi.map.binary</groupId>
     <artifactId>siddhi-map-binary-parent</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.5</version>
     <packaging>pom</packaging>
     <name>Siddhi Map Binary Extension Parent</name>
     <url>http://wso2.org</url>
@@ -57,7 +57,7 @@
         <url>https://github.com/wso2-extensions/siddhi-map-binary.git</url>
         <developerConnection>scm:git:https://github.com/wso2-extensions/siddhi-map-binary.git
         </developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.0.5</tag>
     </scm>
 
     <dependencyManagement>
