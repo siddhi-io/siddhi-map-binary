@@ -91,6 +91,11 @@ public class BinarySourceMapper extends SourceMapper {
     }
 
     @Override
+    protected boolean allowNullInTransportProperties() {
+        return false;
+    }
+
+    @Override
     public Class[] getSupportedInputEventClasses() {
         return new Class[]{ByteBuffer.class, byte[].class};
     }

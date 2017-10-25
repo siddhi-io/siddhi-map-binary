@@ -1,4 +1,4 @@
-# API Docs - v1.0.4
+# API Docs - v1.0.5-SNAPSHOT
 
 ## Sinkmapper
 
