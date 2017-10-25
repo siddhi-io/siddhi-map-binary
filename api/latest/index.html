@@ -183,6 +183,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../1.0.5/" title="1.0.5" class="md-nav__link">
+      1.0.5
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../1.0.4/" title="1.0.4" class="md-nav__link">
       1.0.4
     </a>
@@ -234,26 +246,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sinkmapper" title="Sinkmapper" class="md-nav__link">
-    Sinkmapper
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#binary-sink-mapper" title="binary (Sink Mapper)" class="md-nav__link">
-    binary (Sink Mapper)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#sourcemapper" title="Sourcemapper" class="md-nav__link">
     Sourcemapper
   </a>
@@ -264,6 +256,26 @@
           <li class="md-nav__item">
   <a href="#binary-source-mapper" title="binary (Source Mapper)" class="md-nav__link">
     binary (Source Mapper)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinkmapper" title="Sinkmapper" class="md-nav__link">
+    Sinkmapper
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-sink-mapper" title="binary (Sink Mapper)" class="md-nav__link">
+    binary (Sink Mapper)
   </a>
   
 </li>
@@ -320,26 +332,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sinkmapper" title="Sinkmapper" class="md-nav__link">
-    Sinkmapper
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#binary-sink-mapper" title="binary (Sink Mapper)" class="md-nav__link">
-    binary (Sink Mapper)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#sourcemapper" title="Sourcemapper" class="md-nav__link">
     Sourcemapper
   </a>
@@ -350,6 +342,26 @@
           <li class="md-nav__item">
   <a href="#binary-source-mapper" title="binary (Source Mapper)" class="md-nav__link">
     binary (Source Mapper)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinkmapper" title="Sinkmapper" class="md-nav__link">
+    Sinkmapper
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-sink-mapper" title="binary (Sink Mapper)" class="md-nav__link">
+    binary (Sink Mapper)
   </a>
   
 </li>
@@ -374,22 +386,7 @@
               
                 
                 
-                <h1 id="api-docs-v104">API Docs - v1.0.4</h1>
-<h2 id="sinkmapper">Sinkmapper</h2>
-<h3 id="binary-sink-mapper">binary <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#sink-mapper">(Sink Mapper)</a></em></h3>
-<p style="word-wrap: break-word">This section explains how to map events processed via Siddhi in order to publish them in the <code>binary</code> format.</p>
-
-<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
-<pre><code>@sink(..., @map(type=&quot;binary&quot;)
-</code></pre>
-
-<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
-<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<pre><code>@sink(type='inMemory', topic='WSO2', @map(type='binary')) define stream FooStream (symbol string, price float, volume long); 
-</code></pre>
-
-<p style="word-wrap: break-word">This will publish Siddhi event in binary format.</p>
-
+                <h1 id="api-docs-v105">API Docs - v1.0.5</h1>
 <h2 id="sourcemapper">Sourcemapper</h2>
 <h3 id="binary-source-mapper">binary <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#source-mapper">(Source Mapper)</a></em></h3>
 <p style="word-wrap: break-word">This extension is a binary input mapper that converts events received in <code>binary</code> format to Siddhi events before they are processed.</p>
@@ -404,6 +401,21 @@
 </code></pre>
 
 <p style="word-wrap: break-word">This query performs a mapping to convert an event of the <code>binary</code> format to a Siddhi event. </p>
+
+<h2 id="sinkmapper">Sinkmapper</h2>
+<h3 id="binary-sink-mapper">binary <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#sink-mapper">(Sink Mapper)</a></em></h3>
+<p style="word-wrap: break-word">This section explains how to map events processed via Siddhi in order to publish them in the <code>binary</code> format.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>@sink(..., @map(type=&quot;binary&quot;)
+</code></pre>
+
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>@sink(type='inMemory', topic='WSO2', @map(type='binary')) define stream FooStream (symbol string, price float, volume long); 
+</code></pre>
+
+<p style="word-wrap: break-word">This will publish Siddhi event in binary format.</p>
                 
                   
                 
