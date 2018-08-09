@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "siddhi-map-binary\n\n\nThe \nsiddhi-map-binary extension\n is an extension to \nSiddhi\n\n that  can be used to convert binary events to/from Siddhi events.\n\n\nFind some useful links below:\n\n\n\n\nSource code\n\n\nReleases\n\n\nIssue tracker\n\n\n\n\nLatest API Docs\n\n\nLatest API Docs is \n1.0.12\n.\n\n\nHow to use\n\n\nUsing the extension in \nWSO2 Stream Processor\n\n\n\n\n\n\nYou can use this extension in the latest \nWSO2 Stream Processor\n that is a part of \nWSO2 Analytics\n offering, with editor, debugger and simulation support. \n\n\n\n\n\n\nThis extension is shipped by default with WSO2 Stream Processor, if you wish to use an alternative version of this extension you can replace the component \njar\n that can be found in the \nSTREAM_PROCESSOR_HOME\n/lib\n directory.\n\n\n\n\n\n\nUsing the extension as a \njava library\n\n\n\n\nThis extension can be added as a maven dependency along with other Siddhi dependencies to your project.\n\n\n\n\n     \ndependency\n\n        \ngroupId\norg.wso2.extension.siddhi.map.binary\n/groupId\n\n        \nartifactId\nsiddhi-map-binary\n/artifactId\n\n        \nversion\nx.x.x\n/version\n\n     \n/dependency\n\n\n\n\n\n\nJenkins Build Status\n\n\n\n\n\n\n\n\n\n\nBranch\n\n\nBuild Status\n\n\n\n\n\n\n\n\n\n\nmaster\n\n\n\n\n\n\n\n\n\n\n\n\nFeatures\n\n\n\n\nbinary\n \n(Sink Mapper)\nThis section explains how to map events processed via Siddhi in order to publish them in the \nbinary\n format.\n\n\nbinary\n \n(Source Mapper)\nThis extension is a binary input mapper that converts events received in \nbinary\n format to Siddhi events before they are processed.\n\n\n\n\nHow to Contribute\n\n\n\n\n\n\nPlease report issues at \nGitHub Issue Tracker\n.\n\n\n\n\n\n\nSend your contributions as pull requests to \nmaster branch\n. \n\n\n\n\n\n\nContact us\n\n\n\n\n\n\nPost your questions with the \n\"Siddhi\"\n tag in \nStackoverflow\n. \n\n\n\n\n\n\nSiddhi developers can be contacted via the mailing lists:\n\n\nDevelopers List   : \ndev@wso2.org\n\n\nArchitecture List : \narchitecture@wso2.org\n\n\n\n\n\n\nSupport\n\n\n\n\n\n\nWe are committed to ensuring support for this extension in production. Our unique approach ensures that all support leverages our open development methodology and is provided by the very same engineers who build the technology. \n\n\n\n\n\n\nFor more details and to take advantage of this unique opportunity contact us via \nhttp://wso2.com/support/\n.", 
+            "text": "siddhi-map-binary\n\n\nThe \nsiddhi-map-binary extension\n is an extension to \nSiddhi\n\n that  can be used to convert binary events to/from Siddhi events.\n\n\nFind some useful links below:\n\n\n\n\nSource code\n\n\nReleases\n\n\nIssue tracker\n\n\n\n\nLatest API Docs\n\n\nLatest API Docs is \n1.0.13\n.\n\n\nHow to use\n\n\nUsing the extension in \nWSO2 Stream Processor\n\n\n\n\n\n\nYou can use this extension in the latest \nWSO2 Stream Processor\n that is a part of \nWSO2 Analytics\n offering, with editor, debugger and simulation support. \n\n\n\n\n\n\nThis extension is shipped by default with WSO2 Stream Processor, if you wish to use an alternative version of this extension you can replace the component \njar\n that can be found in the \nSTREAM_PROCESSOR_HOME\n/lib\n directory.\n\n\n\n\n\n\nUsing the extension as a \njava library\n\n\n\n\nThis extension can be added as a maven dependency along with other Siddhi dependencies to your project.\n\n\n\n\n     \ndependency\n\n        \ngroupId\norg.wso2.extension.siddhi.map.binary\n/groupId\n\n        \nartifactId\nsiddhi-map-binary\n/artifactId\n\n        \nversion\nx.x.x\n/version\n\n     \n/dependency\n\n\n\n\n\n\nJenkins Build Status\n\n\n\n\n\n\n\n\n\n\nBranch\n\n\nBuild Status\n\n\n\n\n\n\n\n\n\n\nmaster\n\n\n\n\n\n\n\n\n\n\n\n\nFeatures\n\n\n\n\nbinary\n \n(Sink Mapper)\nThis section explains how to map events processed via Siddhi in order to publish them in the \nbinary\n format.\n\n\nbinary\n \n(Source Mapper)\nThis extension is a binary input mapper that converts events received in \nbinary\n format to Siddhi events before they are processed.\n\n\n\n\nHow to Contribute\n\n\n\n\n\n\nPlease report issues at \nGitHub Issue Tracker\n.\n\n\n\n\n\n\nSend your contributions as pull requests to \nmaster branch\n. \n\n\n\n\n\n\nContact us\n\n\n\n\n\n\nPost your questions with the \n\"Siddhi\"\n tag in \nStackoverflow\n. \n\n\n\n\n\n\nSiddhi developers can be contacted via the mailing lists:\n\n\nDevelopers List   : \ndev@wso2.org\n\n\nArchitecture List : \narchitecture@wso2.org\n\n\n\n\n\n\nSupport\n\n\n\n\n\n\nWe are committed to ensuring support for this extension in production. Our unique approach ensures that all support leverages our open development methodology and is provided by the very same engineers who build the technology. \n\n\n\n\n\n\nFor more details and to take advantage of this unique opportunity contact us via \nhttp://wso2.com/support/\n.", 
             "title": "Welcome"
         }, 
         {
@@ -12,7 +12,7 @@
         }, 
         {
             "location": "/#latest-api-docs", 
-            "text": "Latest API Docs is  1.0.12 .", 
+            "text": "Latest API Docs is  1.0.13 .", 
             "title": "Latest API Docs"
         }, 
         {
@@ -44,6 +44,36 @@
             "location": "/#support", 
             "text": "We are committed to ensuring support for this extension in production. Our unique approach ensures that all support leverages our open development methodology and is provided by the very same engineers who build the technology.     For more details and to take advantage of this unique opportunity contact us via  http://wso2.com/support/ .", 
             "title": "Support"
+        }, 
+        {
+            "location": "/api/1.0.13/", 
+            "text": "API Docs - v1.0.13\n\n\nSinkmapper\n\n\nbinary \n(Sink Mapper)\n\n\nThis section explains how to map events processed via Siddhi in order to publish them in the \nbinary\n format.\n\n\n\nSyntax\n\n\n@sink(..., @map(type=\nbinary\n)\n\n\n\n\n\nExamples\n\n\nEXAMPLE 1\n\n\n@sink(type=\ninMemory\n, topic=\nWSO2\n, @map(type=\nbinary\n)) define stream FooStream (symbol string, price float, volume long); \n\n\n\n\n\nThis will publish Siddhi event in binary format.\n\n\n\nSourcemapper\n\n\nbinary \n(Source Mapper)\n\n\nThis extension is a binary input mapper that converts events received in \nbinary\n format to Siddhi events before they are processed.\n\n\n\nSyntax\n\n\n@source(..., @map(type=\nbinary\n)\n\n\n\n\n\nExamples\n\n\nEXAMPLE 1\n\n\n@source(type=\ninMemory\n, topic=\nWSO2\n, @map(type=\nbinary\n))define stream FooStream (symbol string, price float, volume long); \n\n\n\n\n\nThis query performs a mapping to convert an event of the \nbinary\n format to a Siddhi event.", 
+            "title": "1.0.13"
+        }, 
+        {
+            "location": "/api/1.0.13/#api-docs-v1013", 
+            "text": "", 
+            "title": "API Docs - v1.0.13"
+        }, 
+        {
+            "location": "/api/1.0.13/#sinkmapper", 
+            "text": "", 
+            "title": "Sinkmapper"
+        }, 
+        {
+            "location": "/api/1.0.13/#binary-sink-mapper", 
+            "text": "This section explains how to map events processed via Siddhi in order to publish them in the  binary  format.  Syntax  @sink(..., @map(type= binary )  Examples  EXAMPLE 1  @sink(type= inMemory , topic= WSO2 , @map(type= binary )) define stream FooStream (symbol string, price float, volume long);   This will publish Siddhi event in binary format.", 
+            "title": "binary (Sink Mapper)"
+        }, 
+        {
+            "location": "/api/1.0.13/#sourcemapper", 
+            "text": "", 
+            "title": "Sourcemapper"
+        }, 
+        {
+            "location": "/api/1.0.13/#binary-source-mapper", 
+            "text": "This extension is a binary input mapper that converts events received in  binary  format to Siddhi events before they are processed.  Syntax  @source(..., @map(type= binary )  Examples  EXAMPLE 1  @source(type= inMemory , topic= WSO2 , @map(type= binary ))define stream FooStream (symbol string, price float, volume long);   This query performs a mapping to convert an event of the  binary  format to a Siddhi event.", 
+            "title": "binary (Source Mapper)"
         }, 
         {
             "location": "/api/1.0.12/", 
@@ -347,13 +377,13 @@
         }, 
         {
             "location": "/api/latest/", 
-            "text": "API Docs - v1.0.12\n\n\nSinkmapper\n\n\nbinary \n(Sink Mapper)\n\n\nThis section explains how to map events processed via Siddhi in order to publish them in the \nbinary\n format.\n\n\n\nSyntax\n\n\n@sink(..., @map(type=\nbinary\n)\n\n\n\n\n\nExamples\n\n\nEXAMPLE 1\n\n\n@sink(type=\ninMemory\n, topic=\nWSO2\n, @map(type=\nbinary\n)) define stream FooStream (symbol string, price float, volume long); \n\n\n\n\n\nThis will publish Siddhi event in binary format.\n\n\n\nSourcemapper\n\n\nbinary \n(Source Mapper)\n\n\nThis extension is a binary input mapper that converts events received in \nbinary\n format to Siddhi events before they are processed.\n\n\n\nSyntax\n\n\n@source(..., @map(type=\nbinary\n)\n\n\n\n\n\nExamples\n\n\nEXAMPLE 1\n\n\n@source(type=\ninMemory\n, topic=\nWSO2\n, @map(type=\nbinary\n))define stream FooStream (symbol string, price float, volume long); \n\n\n\n\n\nThis query performs a mapping to convert an event of the \nbinary\n format to a Siddhi event.", 
+            "text": "API Docs - v1.0.13\n\n\nSinkmapper\n\n\nbinary \n(Sink Mapper)\n\n\nThis section explains how to map events processed via Siddhi in order to publish them in the \nbinary\n format.\n\n\n\nSyntax\n\n\n@sink(..., @map(type=\nbinary\n)\n\n\n\n\n\nExamples\n\n\nEXAMPLE 1\n\n\n@sink(type=\ninMemory\n, topic=\nWSO2\n, @map(type=\nbinary\n)) define stream FooStream (symbol string, price float, volume long); \n\n\n\n\n\nThis will publish Siddhi event in binary format.\n\n\n\nSourcemapper\n\n\nbinary \n(Source Mapper)\n\n\nThis extension is a binary input mapper that converts events received in \nbinary\n format to Siddhi events before they are processed.\n\n\n\nSyntax\n\n\n@source(..., @map(type=\nbinary\n)\n\n\n\n\n\nExamples\n\n\nEXAMPLE 1\n\n\n@source(type=\ninMemory\n, topic=\nWSO2\n, @map(type=\nbinary\n))define stream FooStream (symbol string, price float, volume long); \n\n\n\n\n\nThis query performs a mapping to convert an event of the \nbinary\n format to a Siddhi event.", 
             "title": "latest"
         }, 
         {
-            "location": "/api/latest/#api-docs-v1012", 
+            "location": "/api/latest/#api-docs-v1013", 
             "text": "", 
-            "title": "API Docs - v1.0.12"
+            "title": "API Docs - v1.0.13"
         }, 
         {
             "location": "/api/latest/#sinkmapper", 
