@@ -32,6 +32,7 @@ import org.wso2.siddhi.core.stream.output.StreamCallback;
 import org.wso2.siddhi.core.util.EventPrinter;
 import org.wso2.siddhi.core.util.SiddhiTestHelper;
 import org.wso2.siddhi.core.util.transport.InMemoryBroker;
+import org.wso2.siddhi.core.util.transport.SubscriberUnAvailableException;
 import org.wso2.siddhi.query.api.definition.Attribute;
 
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class BinarySourceMapperTestCase {
     }
 
     @Test
-    public void binarySourceMapperTest1() throws InterruptedException, IOException {
+    public void binarySourceMapperTest1() throws InterruptedException, IOException, SubscriberUnAvailableException {
         LOG.info("binary SourceMapper TestCase 1");
         SiddhiManager siddhiManager = new SiddhiManager();
 
@@ -116,7 +117,7 @@ public class BinarySourceMapperTestCase {
     }
 
     @Test(dependsOnMethods = "binarySourceMapperTest1")
-    public void binarySourceMapperTest2() throws InterruptedException, IOException {
+    public void binarySourceMapperTest2() throws InterruptedException, IOException, SubscriberUnAvailableException {
         LOG.info("binary SourceMapper TestCase 2");
         SiddhiManager siddhiManager = new SiddhiManager();
 
@@ -179,7 +180,7 @@ public class BinarySourceMapperTestCase {
     }
 
     @Test(dependsOnMethods = "binarySourceMapperTest2")
-    public void binarySourceMapperTest3() throws InterruptedException, IOException {
+    public void binarySourceMapperTest3() throws InterruptedException, IOException, SubscriberUnAvailableException {
         LOG.info("binary SourceMapper TestCase 3");
         SiddhiManager siddhiManager = new SiddhiManager();
 
@@ -260,7 +261,7 @@ public class BinarySourceMapperTestCase {
     }
 
     @Test
-    public void binarySourceMapperTest5() throws InterruptedException, IOException {
+    public void binarySourceMapperTest5() throws InterruptedException, IOException, SubscriberUnAvailableException {
         LOG.info("binary SourceMapper TestCase for object type");
         SiddhiManager siddhiManager = new SiddhiManager();
 
