@@ -18,9 +18,9 @@
 
 package org.wso2.extension.siddhi.map.binary.sinkmapper;
 
+import io.siddhi.core.event.Event;
+import io.siddhi.query.api.definition.Attribute;
 import org.wso2.extension.siddhi.map.binary.utils.BinaryMessageConverterUtil;
-import org.wso2.siddhi.core.event.Event;
-import org.wso2.siddhi.query.api.definition.Attribute;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
