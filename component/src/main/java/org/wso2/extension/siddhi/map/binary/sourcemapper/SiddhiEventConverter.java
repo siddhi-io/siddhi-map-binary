@@ -17,11 +17,10 @@
  */
 package org.wso2.extension.siddhi.map.binary.sourcemapper;
 
-
+import io.siddhi.core.event.Event;
+import io.siddhi.query.api.definition.Attribute;
 import org.apache.log4j.Logger;
 import org.wso2.extension.siddhi.map.binary.utils.BinaryMessageConverterUtil;
-import org.wso2.siddhi.core.event.Event;
-import org.wso2.siddhi.query.api.definition.Attribute;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
