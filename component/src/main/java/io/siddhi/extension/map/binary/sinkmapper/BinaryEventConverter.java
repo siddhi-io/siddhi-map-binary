@@ -16,11 +16,11 @@
  *  under the License.
  */
 
-package org.wso2.extension.siddhi.map.binary.sinkmapper;
+package io.siddhi.extension.map.binary.sinkmapper;
 
 import io.siddhi.core.event.Event;
+import io.siddhi.extension.map.binary.utils.BinaryMessageConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
-import org.wso2.extension.siddhi.map.binary.utils.BinaryMessageConverterUtil;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

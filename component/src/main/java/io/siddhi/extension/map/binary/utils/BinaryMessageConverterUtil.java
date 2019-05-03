@@ -15,7 +15,7 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package org.wso2.extension.siddhi.map.binary.utils;
+package io.siddhi.extension.map.binary.utils;
 
 import io.siddhi.query.api.definition.Attribute;
 

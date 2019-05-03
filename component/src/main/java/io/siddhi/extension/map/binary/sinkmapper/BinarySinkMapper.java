@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.wso2.extension.siddhi.map.binary.sinkmapper;
+package io.siddhi.extension.map.binary.sinkmapper;
 
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
@@ -28,10 +28,10 @@ import io.siddhi.core.stream.output.sink.SinkMapper;
 import io.siddhi.core.util.config.ConfigReader;
 import io.siddhi.core.util.transport.OptionHolder;
 import io.siddhi.core.util.transport.TemplateBuilder;
+import io.siddhi.extension.map.binary.utils.EventDefinitionConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.definition.StreamDefinition;
 import org.apache.log4j.Logger;
-import org.wso2.extension.siddhi.map.binary.utils.EventDefinitionConverterUtil;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;

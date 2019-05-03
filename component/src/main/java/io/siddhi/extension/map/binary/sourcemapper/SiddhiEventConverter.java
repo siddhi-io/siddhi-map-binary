@@ -15,12 +15,12 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package org.wso2.extension.siddhi.map.binary.sourcemapper;
+package io.siddhi.extension.map.binary.sourcemapper;
 
 import io.siddhi.core.event.Event;
+import io.siddhi.extension.map.binary.utils.BinaryMessageConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
 import org.apache.log4j.Logger;
-import org.wso2.extension.siddhi.map.binary.utils.BinaryMessageConverterUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;

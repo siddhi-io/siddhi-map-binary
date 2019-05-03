@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.wso2.extension.siddhi.map.binary;
+package io.siddhi.extension.map.binary;
 
 import io.siddhi.core.SiddhiAppRuntime;
 import io.siddhi.core.SiddhiManager;
@@ -26,13 +26,13 @@ import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
 import io.siddhi.core.util.SiddhiTestHelper;
 import io.siddhi.core.util.transport.InMemoryBroker;
+import io.siddhi.extension.map.binary.sourcemapper.SiddhiEventConverter;
+import io.siddhi.extension.map.binary.utils.EventDefinitionConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.wso2.extension.siddhi.map.binary.sourcemapper.SiddhiEventConverter;
-import org.wso2.extension.siddhi.map.binary.utils.EventDefinitionConverterUtil;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
