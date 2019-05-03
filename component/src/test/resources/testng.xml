@@ -22,8 +22,8 @@
 <suite name="Tcp-IO-Test-Suite">
     <test name="tcp-tests" enabled="true" preserve-order="true">
         <classes>
-            <class name="org.wso2.extension.siddhi.map.binary.BinarySinkMapperTestCase"/>
-            <class name="org.wso2.extension.siddhi.map.binary.BinarySourceMapperTestCase"/>
+            <class name="io.siddhi.extension.map.binary.BinarySinkMapperTestCase"/>
+            <class name="io.siddhi.extension.map.binary.BinarySourceMapperTestCase"/>
         </classes>
     </test>
 </suite>

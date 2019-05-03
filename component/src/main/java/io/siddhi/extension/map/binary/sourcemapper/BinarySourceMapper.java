@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.wso2.extension.siddhi.map.binary.sourcemapper;
+package io.siddhi.extension.map.binary.sourcemapper;
 
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
@@ -28,15 +28,15 @@ import io.siddhi.core.stream.input.source.InputEventHandler;
 import io.siddhi.core.stream.input.source.SourceMapper;
 import io.siddhi.core.util.config.ConfigReader;
 import io.siddhi.core.util.transport.OptionHolder;
+import io.siddhi.extension.map.binary.utils.EventDefinitionConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.definition.StreamDefinition;
-import org.wso2.extension.siddhi.map.binary.utils.EventDefinitionConverterUtil;
 
 import java.nio.ByteBuffer;
 import java.util.List;
 
-import static org.wso2.extension.siddhi.map.binary.sourcemapper.SiddhiEventConverter.LOG;
-import static org.wso2.extension.siddhi.map.binary.sourcemapper.SiddhiEventConverter.toConvertToSiddhiEvents;
+import static io.siddhi.extension.map.binary.sourcemapper.SiddhiEventConverter.LOG;
+import static io.siddhi.extension.map.binary.sourcemapper.SiddhiEventConverter.toConvertToSiddhiEvents;
 
 /**
  * Binary source mapper extension.

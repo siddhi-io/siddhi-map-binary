@@ -19,7 +19,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.wso2.extension.siddhi.map.binary</groupId>
+        <groupId>io.siddhi.extension.map.binary</groupId>
         <artifactId>siddhi-map-binary-parent</artifactId>
         <version>2.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -130,7 +130,7 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
                         <Export-Package>
-                            org.wso2.extension.siddhi.map.binary.*
+                            io.siddhi.extension.map.binary.*
                         </Export-Package>
                         <Import-Package>
                             io.siddhi.core.*;version="${siddhi.version.range}",
