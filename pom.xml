@@ -54,9 +54,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.com/wso2-extensions/siddhi-map-binary.git</connection>
-        <url>https://github.com/wso2-extensions/siddhi-map-binary.git</url>
-        <developerConnection>scm:git:https://github.com/wso2-extensions/siddhi-map-binary.git
+        <connection>scm:git:https://github.com/siddhi-io/siddhi-map-binary.git</connection>
+        <url>https://github.com/siddhi-io/siddhi-map-binary.git</url>
+        <developerConnection>scm:git:https://github.com/siddhi-io/siddhi-map-binary.git
         </developerConnection>
         <tag>HEAD</tag>
     </scm>
