@@ -19,13 +19,12 @@ For information on <a target="_blank" href="https://siddhi.io/">Siddhi</a> and i
 
 ## Latest API Docs 
 
-Latest API Docs is <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/api/2.0.2">2.0.2</a>.
+Latest API Docs is <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/api/2.0.3">2.0.3</a>.
 
 ## Features
 
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/api/2.0.2/#binary-sink-mapper">binary</a> *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#sink-mapper">(Sink Mapper)</a>*<br><div style="padding-left: 1em;"><p>This section explains how to map events processed via Siddhi in order to publish them in the <code>binary</code> format.</p></div>
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/api/2.0.2/#binary-source-mapper">binary</a> *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#source-mapper">(Source Mapper)</a>*<br><div style="padding-left: 1em;"><p>This extension is a binary input mapper that converts events received in <code>binary</code> format to Siddhi events before they are processed.</p></div>
-
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/api/2.0.3/#binary-sink-mapper">binary</a> *(<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#sink-mapper">Sink Mapper</a>)*<br> <div style="padding-left: 1em;"><p>This section explains how to map events processed via Siddhi in order to publish them in the <code>binary</code> format.</p></div>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/api/2.0.3/#binary-source-mapper">binary</a> *(<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#source-mapper">Source Mapper</a>)*<br> <div style="padding-left: 1em;"><p>This extension is a binary input mapper that converts events received in <code>binary</code> format to Siddhi events before they are processed.</p></div>
 
 ## Dependencies 
 
