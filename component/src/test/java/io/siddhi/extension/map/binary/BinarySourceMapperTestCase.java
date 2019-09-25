@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
- * TCP sinkmapper test case.
+ * TCP sink mapper test case.
  */
 public class BinarySourceMapperTestCase {
     private static final Logger LOG = Logger.getLogger(BinarySourceMapperTestCase.class);
@@ -260,7 +260,7 @@ public class BinarySourceMapperTestCase {
         siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
     }
 
-    @Test
+    @Test(dependsOnMethods = "binarySourceMapperTest3")
     public void binarySourceMapperTest5() throws InterruptedException, IOException, SubscriberUnAvailableException {
         LOG.info("binary SourceMapper TestCase for object type");
         SiddhiManager siddhiManager = new SiddhiManager();
@@ -313,6 +313,61 @@ public class BinarySourceMapperTestCase {
         arrayList.add(new Event(System.currentTimeMillis(), new Object[]{"test2", 362, 32.0f, 3802L, 232.0, true}));
         InMemoryBroker.publish("WSO2", BinaryEventConverter.convertToBinaryMessage(
                 arrayList.toArray(new Event[3]), types).array());
+        SiddhiTestHelper.waitForEvents(waitTime, 3, count, timeout);
+        siddhiAppRuntime.shutdown();
+
+        AssertJUnit.assertTrue(eventArrived);
+    }
+
+    @Test(dependsOnMethods = "binarySourceMapperTest5")
+    public void binarySourceMapperTest6() throws InterruptedException, IOException, SubscriberUnAvailableException {
+        LOG.info("Binary SourceMapper TestCase 5 - To test non english characters");
+        SiddhiManager siddhiManager = new SiddhiManager();
+
+        String inStreamDefinition = "" +
+                "@source(type='inMemory', topic='WSO2', @map(type='binary'))\n" +
+                "define stream inputStream (a string); " +
+                "" +
+                "define stream outputStream (a string);";
+        String query = ("@info(name = 'query1') " +
+                "from inputStream " +
+                "select *  " +
+                "insert into outputStream;");
+
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(
+                inStreamDefinition + query);
+
+        Attribute.Type[] types = EventDefinitionConverterUtil.generateAttributeTypeArray(siddhiAppRuntime
+                .getStreamDefinitionMap().get("inputStream").getAttributeList());
+
+        siddhiAppRuntime.addCallback("outputStream", new StreamCallback() {
+            @Override
+            public void receive(Event[] events) {
+                EventPrinter.print(events);
+                eventArrived = true;
+                for (Event event : events) {
+                    count.getAndIncrement();
+                    switch (count.get()) {
+                        case 1:
+                            AssertJUnit.assertEquals("Éclair", event.getData(0));
+                            break;
+                        case 2:
+                            AssertJUnit.assertEquals("Éclair1", event.getData(0));
+                            break;
+                        default:
+                            AssertJUnit.fail();
+                    }
+                }
+            }
+        });
+
+        siddhiAppRuntime.start();
+
+        ArrayList<Event> arrayList = new ArrayList<Event>();
+        arrayList.add(new Event(System.currentTimeMillis(), new Object[]{"Éclair"}));
+        arrayList.add(new Event(System.currentTimeMillis(), new Object[]{"Éclair1"}));
+        InMemoryBroker.publish("WSO2", ByteBuffer.wrap(BinaryEventConverter.convertToBinaryMessage(
+                arrayList.toArray(new Event[2]), types).array()));
         SiddhiTestHelper.waitForEvents(waitTime, 3, count, timeout);
         siddhiAppRuntime.shutdown();
 
