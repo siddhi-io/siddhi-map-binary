@@ -62,7 +62,7 @@ public final class BinaryMessageConverterUtil {
         switch (type) {
 
             case STRING:
-                return 4 + ((String) data).length();
+                return 4 + ((String) data).getBytes(Charset.defaultCharset()).length;
             case INT:
                 return 4;
             case LONG:
@@ -82,7 +82,7 @@ public final class BinaryMessageConverterUtil {
         switch (type) {
 
             case STRING:
-                eventDataBuffer.putInt(((String) data).length());
+                eventDataBuffer.putInt(((String) data).getBytes(Charset.defaultCharset()).length);
                 eventDataBuffer.put((((String) data).getBytes(Charset.defaultCharset())));
                 break;
             case INT:
