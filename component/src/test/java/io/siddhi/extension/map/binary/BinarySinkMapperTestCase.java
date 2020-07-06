@@ -21,6 +21,7 @@ package io.siddhi.extension.map.binary;
 import io.siddhi.core.SiddhiAppRuntime;
 import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.event.Event;
+import io.siddhi.core.exception.MappingFailedException;
 import io.siddhi.core.exception.SiddhiAppCreationException;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
@@ -80,8 +81,13 @@ public class BinarySinkMapperTestCase {
         InMemoryBroker.Subscriber subscriber = new InMemoryBroker.Subscriber() {
             @Override
             public void onMessage(Object o) {
-                Event[] events = SiddhiEventConverter.toConvertToSiddhiEvents(ByteBuffer.wrap(((ByteBuffer) o).array
-                        ()), types);
+                Event[] events = new Event[0];
+                try {
+                    events = SiddhiEventConverter.toConvertToSiddhiEvents(ByteBuffer.wrap(((ByteBuffer) o).array
+                            ()), types);
+                } catch (MappingFailedException e) {
+                    LOG.error(e);
+                }
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
@@ -152,8 +158,13 @@ public class BinarySinkMapperTestCase {
 
             @Override
             public void onMessage(Object o) {
-                Event[] events = SiddhiEventConverter.toConvertToSiddhiEvents(
-                        ByteBuffer.wrap(((ByteBuffer) o).array()), types);
+                Event[] events = new Event[0];
+                try {
+                    events = SiddhiEventConverter.toConvertToSiddhiEvents(
+                            ByteBuffer.wrap(((ByteBuffer) o).array()), types);
+                } catch (MappingFailedException e) {
+                    LOG.error(e);
+                }
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
@@ -244,8 +255,13 @@ public class BinarySinkMapperTestCase {
         InMemoryBroker.Subscriber subscriber = new InMemoryBroker.Subscriber() {
             @Override
             public void onMessage(Object o) {
-                Event[] events = SiddhiEventConverter.toConvertToSiddhiEvents(ByteBuffer.wrap(((ByteBuffer) o).array
-                        ()), types);
+                Event[] events = new Event[0];
+                try {
+                    events = SiddhiEventConverter.toConvertToSiddhiEvents(ByteBuffer.wrap(((ByteBuffer) o).array
+                            ()), types);
+                } catch (MappingFailedException e) {
+                    LOG.error(e);
+                }
                 EventPrinter.print(events);
                 eventArrived = true;
                 for (Event event : events) {
