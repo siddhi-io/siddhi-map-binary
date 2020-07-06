@@ -22,17 +22,20 @@ import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.core.config.SiddhiAppContext;
 import io.siddhi.core.event.Event;
+import io.siddhi.core.exception.MappingFailedException;
 import io.siddhi.core.exception.SiddhiAppCreationException;
 import io.siddhi.core.stream.input.source.AttributeMapping;
 import io.siddhi.core.stream.input.source.InputEventHandler;
 import io.siddhi.core.stream.input.source.SourceMapper;
 import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.error.handler.model.ErroneousEvent;
 import io.siddhi.core.util.transport.OptionHolder;
 import io.siddhi.extension.map.binary.utils.EventDefinitionConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.definition.StreamDefinition;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.List;
 
 import static io.siddhi.extension.map.binary.sourcemapper.SiddhiEventConverter.LOG;
@@ -72,7 +75,9 @@ public class BinarySourceMapper extends SourceMapper {
     }
 
     @Override
-    protected void mapAndProcess(Object o, InputEventHandler inputEventHandler) throws InterruptedException {
+    protected void mapAndProcess(Object o, InputEventHandler inputEventHandler)
+            throws InterruptedException, MappingFailedException {
+        List<ErroneousEvent> failedEvents = new ArrayList<>(0);
         try {
             if (o != null) {
                 Event[] events;
@@ -81,12 +86,15 @@ public class BinarySourceMapper extends SourceMapper {
                 } else {
                     events = toConvertToSiddhiEvents(ByteBuffer.wrap((byte[]) o), types);
                 }
-                if (events != null) {
-                    inputEventHandler.sendEvents(events);
-                }
+                inputEventHandler.sendEvents(events);
             }
         } catch (Throwable t) {
-            LOG.error("Error at binary source mapper of '" + streamDefinition.getId() + "' " + t.getMessage(), t);
+            String errStr = "Error at binary source mapper of '" + streamDefinition.getId() + "' " + t.getMessage();
+            LOG.error(errStr, t);
+            failedEvents.add(new ErroneousEvent(o, t, errStr));
+        }
+        if (!failedEvents.isEmpty()) {
+            throw new MappingFailedException(failedEvents);
         }
     }
 

@@ -18,6 +18,7 @@
 package io.siddhi.extension.map.binary.sourcemapper;
 
 import io.siddhi.core.event.Event;
+import io.siddhi.core.exception.MappingFailedException;
 import io.siddhi.extension.map.binary.utils.BinaryMessageConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
 import org.apache.log4j.Logger;
@@ -32,10 +33,10 @@ import java.nio.ByteBuffer;
 public class SiddhiEventConverter {
     static final Logger LOG = Logger.getLogger(SiddhiEventConverter.class);
 
-    public static Event[] toConvertToSiddhiEvents(ByteBuffer messageBuffer, Attribute.Type[] attributeTypes) {
+    public static Event[] toConvertToSiddhiEvents(ByteBuffer messageBuffer, Attribute.Type[] attributeTypes)
+            throws MappingFailedException {
         try {
             int numberOfEvents = messageBuffer.getInt();
-
             Event[] events = new Event[numberOfEvents];
             for (int i = 0; i < numberOfEvents; i++) {
                 events[i] = getEvent(messageBuffer, attributeTypes);
@@ -43,8 +44,8 @@ public class SiddhiEventConverter {
             return events;
         } catch (UnsupportedEncodingException e) {
             LOG.error(e.getMessage(), e);
+            throw new MappingFailedException(e);
         }
-        return null;
     }
 
     static Event getEvent(ByteBuffer byteBuffer, Attribute.Type[] attributeTypes) throws UnsupportedEncodingException {
