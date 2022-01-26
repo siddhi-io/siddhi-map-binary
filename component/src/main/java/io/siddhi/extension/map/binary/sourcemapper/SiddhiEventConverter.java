@@ -21,7 +21,8 @@ import io.siddhi.core.event.Event;
 import io.siddhi.core.exception.MappingFailedException;
 import io.siddhi.extension.map.binary.utils.BinaryMessageConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
@@ -31,7 +32,7 @@ import java.nio.ByteBuffer;
  * This is used within data bridge to create the event from the row message received.
  */
 public class SiddhiEventConverter {
-    static final Logger LOG = Logger.getLogger(SiddhiEventConverter.class);
+    static final Logger LOG = LogManager.getLogger(SiddhiEventConverter.class);
 
     public static Event[] toConvertToSiddhiEvents(ByteBuffer messageBuffer, Attribute.Type[] attributeTypes)
             throws MappingFailedException {
