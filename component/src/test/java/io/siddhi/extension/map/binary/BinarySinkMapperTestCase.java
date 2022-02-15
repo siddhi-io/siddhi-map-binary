@@ -30,7 +30,8 @@ import io.siddhi.core.util.transport.InMemoryBroker;
 import io.siddhi.extension.map.binary.sourcemapper.SiddhiEventConverter;
 import io.siddhi.extension.map.binary.utils.EventDefinitionConverterUtil;
 import io.siddhi.query.api.definition.Attribute;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -43,7 +44,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * TCP sinkmapper test case.
  */
 public class BinarySinkMapperTestCase {
-    static final Logger LOG = Logger.getLogger(BinarySinkMapperTestCase.class);
+    static final Logger LOG = LogManager.getLogger(BinarySinkMapperTestCase.class);
     private volatile AtomicInteger count = new AtomicInteger(0);
     private volatile int count1;
     private volatile boolean eventArrived;
